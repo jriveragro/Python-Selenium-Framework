@@ -1,0 +1,33 @@
+# Import all necessary selenium, webdriver and other libraries/modules need to handle actions being performed
+import pytest
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+
+@pytest.fixture(scope='class')
+def setup(request):
+    # Instantiate the chromeoptions class from the webdriver so chrome specific methods and capabilities are available.
+    optns = webdriver.ChromeOptions()
+
+    # Pass the ChromeDriverManager().install() method in the service parameter so that it automatically
+    # installs it if needed. In addition, I pass the chrome options.
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=optns)
+
+    wait = WebDriverWait(driver, 10)
+
+    # Tell the driver to maximize the browser window size.
+    driver.maximize_window()
+
+    # Navigate to the application under test.
+    driver.get('https://parabank.parasoft.com/')
+
+    #
+    request.cls.driver = driver
+    request.cls.wait = wait
+
+    # This is the tear-down setup.
+    yield
+    driver.close()
