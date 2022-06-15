@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 @pytest.fixture(scope='class')
-def setup(request):
+def setup(request):  # The request fixture being passed here represents the class of the requesting test function.
     # Instantiate the chromeoptions class from the webdriver so chrome specific methods and capabilities are available.
     optns = webdriver.ChromeOptions()
 
@@ -16,6 +16,7 @@ def setup(request):
     # installs it if needed. In addition, I pass the chrome options.
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=optns)
 
+    # Setting an explicit wait time.
     wait = WebDriverWait(driver, 10)
 
     # Tell the driver to maximize the browser window size.
@@ -24,10 +25,13 @@ def setup(request):
     # Navigate to the application under test.
     driver.get('https://parabank.parasoft.com/')
 
-    #
+    # Link the driver object created in here to the driver in the calling function.
     request.cls.driver = driver
+
+    # Link the explicit wait time object created in here to the wait time in the calling function.
     request.cls.wait = wait
 
-    # This is the tear-down setup.
+    # This is the tear-down setup, the yield statement allows to perform an action after the test has run
+    # in this case, closing the driver.
     yield
     driver.close()

@@ -1,33 +1,28 @@
 import pytest
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-from pages.welcome_landing_page import WelcomeLandingPage
+from pages.customer_login_page import CustomerLoginPage
 from pages.register_page import RegisterPage
+import time
 
 
 @pytest.mark.usefixtures('setup')
-class TestRegister():
+class TestRegister:
     def test_register(self):
-        welcome_page = WelcomeLandingPage(self.driver)
-        register_page = RegisterPage(self.driver)
+        customer_login_page = CustomerLoginPage(self.driver, self.wait)
+        register_page = RegisterPage(self.driver, self.wait)
 
-        welcome_page.click_on_register_link()
+        customer_login_page.click_on_register_link()
 
         register_page.enter_first_name('Archie')
         register_page.enter_last_name('Wells')
-        register_page.enter_address('Wells')
-        register_page.enter_city('Wells')
-        register_page.enter_state('Wells')
-        register_page.enter_zip_code('Wells')
-        register_page.enter_phone_number('Wells')
-        register_page.enter_ssn('Wells')
-        register_page.enter_user_name('Wells')
-        register_page.enter_password('Wells')
-        register_page.enter_confirm_password('Wells')
+        register_page.enter_address('150 Testing Ave')
+        register_page.enter_city('Tampa')
+        register_page.enter_state('FL')
+        register_page.enter_zip_code('33607')
+        register_page.enter_phone_number('1001010001')
+        register_page.enter_ssn('100000001')
+        register_page.enter_user_name('awells')
+        register_page.enter_password('pwd#123')
+        register_page.enter_confirm_password('pwd#123')
+        register_page.click_on_register_button()
 
-
-
-
-
-register = TestRegister()
-register.test_register()
+        time.sleep(15)
