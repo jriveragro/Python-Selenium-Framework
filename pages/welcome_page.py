@@ -6,6 +6,7 @@ from base.base_driver import BaseDriver
 class WelcomePage(BaseDriver):
 
     def __init__(self, driver, wait):
+        super().__init__(driver)
         self.driver = driver
         self.wait = wait
 
