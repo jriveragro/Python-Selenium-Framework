@@ -2,15 +2,14 @@ import pytest
 from pages.register_page import RegisterPage
 from pages.welcome_page import WelcomePage
 from pages.customer_created_page import CustomerCreatedPage
-import time
 
 
 @pytest.mark.usefixtures('setup')
 class TestRegister:
     def test_register(self):
-        welcome_page = WelcomePage(self.driver, self.wait)
-        register_page = RegisterPage(self.driver, self.wait)
-        customer_created_page = CustomerCreatedPage(self.driver, self.wait)
+        welcome_page = WelcomePage(self.driver)
+        register_page = RegisterPage(self.driver)
+        customer_created_page = CustomerCreatedPage(self.driver)
 
         welcome_page.click_register_link()
         register_page.set_first_name('bando')
@@ -29,5 +28,3 @@ class TestRegister:
 
         print(f'This is the message in the left panel:> {customer_created_page.get_welcome_message("left")}')
         print(f'This is the message in the right panel:> {customer_created_page.get_welcome_message("right")}')
-
-        time.sleep(20)

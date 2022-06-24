@@ -3,8 +3,6 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 
 @pytest.fixture(scope='class')
@@ -16,9 +14,6 @@ def setup(request):  # The request fixture being passed here represents the clas
     # installs it if needed. In addition, I pass the chrome options.
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=optns)
 
-    # Setting an explicit wait time.
-    wait = WebDriverWait(driver, 10)
-
     # Tell the driver to maximize the browser window size.
     driver.maximize_window()
 
@@ -27,9 +22,6 @@ def setup(request):  # The request fixture being passed here represents the clas
 
     # Link the driver object created in here to the driver in the calling function.
     request.cls.driver = driver
-
-    # Link the explicit wait time object created in here to the wait time in the calling function.
-    request.cls.wait = wait
 
     # This is the tear-down setup, the yield statement allows to perform an action after the test has run
     # in this case, closing the driver.
