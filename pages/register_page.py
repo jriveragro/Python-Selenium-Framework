@@ -21,7 +21,7 @@ class RegisterPage(BaseDriver):
     SSN_INPUT = "input[id='customer.ssn']"
     USER_NAME_INPUT = "input[id='customer.username']"
     PASSWORD_INPUT = "input[id='customer.password']"
-    CONFIRM_PASSWORD_INPUT = "input[id='customer.repeatedPassword']"
+    CONFIRM_PASSWORD_INPUT = "input[id='repeatedPassword']"
     REGISTER_BUTTON = "input[type='submit'][value='Register']"
 
     # =====================================================================================
@@ -83,8 +83,8 @@ class RegisterPage(BaseDriver):
         self.get_city_field().send_keys(city)
 
     def set_state(self, state):
-        self.get_state().clear()
-        self.get_state().send_keys(state)
+        self.get_state_field().clear()
+        self.get_state_field().send_keys(state)
 
     def set_zip_code(self, zip_code):
         self.get_zipcode_field().clear()
@@ -99,8 +99,8 @@ class RegisterPage(BaseDriver):
         self.get_ssn_field().send_keys(ssn)
 
     def set_user_name(self, user_name):
-        self.get_user_name().clear()
-        self.get_user_name().send_keys(user_name)
+        self.get_user_name_field().clear()
+        self.get_user_name_field().send_keys(user_name)
 
     def set_password(self, password):
         self.get_password_field().clear()

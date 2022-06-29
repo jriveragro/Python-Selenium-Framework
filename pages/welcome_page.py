@@ -29,7 +29,7 @@ class WelcomePage(BaseDriver):
         return self.wait_for_element_to_be_clickable(By.CSS_SELECTOR, self.LOGIN_BUTTON)
 
     def get_register_link(self):
-        return self.wait_for_element_to_be_clickable(By.CSS_SELECTOR, self.REGISTER_LINK_TEXT)
+        return self.wait_for_element_to_be_clickable(By.LINK_TEXT, self.REGISTER_LINK_TEXT)
 
     # =====================================================================================
     # Actions -----------------------------------------------------------------------------
