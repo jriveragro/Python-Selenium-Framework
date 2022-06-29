@@ -48,6 +48,12 @@ class WelcomePage(BaseDriver):
     def click_register_link(self):
         self.get_register_link().click()
 
+    def log_in_existing_user(self, username, password):
+        self.set_user_name(username)
+        self.set_password(password)
+        self.click_login_button()
+
+
 
 
     

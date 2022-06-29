@@ -112,3 +112,20 @@ class RegisterPage(BaseDriver):
 
     def click_register_button(self):
         self.get_register_button().click()
+
+    def register_new_user(self, firstname, lastname, address, city, state, zipcode, phone, ssn,  username, password):
+        self.set_first_name(firstname)
+        self.set_last_name(lastname)
+        self.set_address(address)
+        self.set_city(city)
+        self.set_state(state)
+        self.set_zip_code(zipcode)
+        self.set_phone_number(phone)
+        self.set_ssn(ssn)
+        self.set_user_name(username)
+        self.set_password(password)
+        self.set_confirm_password(password)
+        self.click_register_button()
+
+
+
