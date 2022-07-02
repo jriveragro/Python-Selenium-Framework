@@ -1,15 +1,12 @@
 import pytest
-import re
 from pages.welcome_page import WelcomePage
-from pages.accounts_overview import AccountsOverviewPage
+from utilities.utils import Utils
 
 
 @pytest.mark.usefixtures('setup')
 class TestLogin:
-    def test_login(self):
-        welcome_page = WelcomePage(self.driver)
-
-        welcome_page.log_in_existing_user("cdeale", "pwd#123")
-
-        assert re.match(".+\/parabank\/login\.htm.+", welcome_page.get_page_url())
-
+    def test_successful_login(self):
+        wp = WelcomePage(self.driver)
+        account_overview_page = wp.log_in_existing_user("eramberxiomara357", "hola@741")
+        ut = Utils()
+        ut.assert_page_url_ends_with(account_overview_page.get_page_url(), "/parabank/overview.htm")
