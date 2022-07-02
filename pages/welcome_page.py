@@ -1,5 +1,7 @@
 from selenium.webdriver.common.by import By
 from base.base_driver import BaseDriver
+from pages.register_page import RegisterPage
+from pages.accounts_overview import AccountsOverviewPage
 
 
 class WelcomePage(BaseDriver):
@@ -47,11 +49,16 @@ class WelcomePage(BaseDriver):
 
     def click_register_link(self):
         self.get_register_link().click()
+        register_page = RegisterPage(self.driver)
+        return register_page
 
     def log_in_existing_user(self, username, password):
         self.set_user_name(username)
         self.set_password(password)
         self.click_login_button()
+        account_overview_page = AccountsOverviewPage(self.driver)
+        return account_overview_page
+
 
 
 

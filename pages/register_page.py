@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from base.base_driver import BaseDriver
+from pages.customer_created_page import CustomerCreatedPage
 
 
 class RegisterPage(BaseDriver):
@@ -126,6 +127,9 @@ class RegisterPage(BaseDriver):
         self.set_password(password)
         self.set_confirm_password(password)
         self.click_register_button()
+        customer_created_page = CustomerCreatedPage(self.driver)
+        return customer_created_page
+
 
 
 
